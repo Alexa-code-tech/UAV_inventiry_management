@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<launch>
+
+  <!-- ========== Gazebo + Clover + PX4 ========== -->
+  <include file="$(find clover)/launch/simulator.launch">
+    <!-- Внимание: аргумент называется world_name, а не world -->
+    
+    <!-- При необходимости можно отключить GUI: <arg name="gui" value="false"/> -->
+  </include>
+
+  <!-- ========== Fast-LIO2 ========== -->
+  <node name="fastlio_mapping"
+        pkg="fast_lio" type="fastlio_mapping"
+        output="screen">
+    <rosparam command="load"
+              file="$(find fast_lio)/config/avia_warehouse.yaml"/>
+  </node>
+
+  <!-- ========== QR-детектор ========== -->
+  <node name="qr_detector"
+        pkg="lidar_visual_fusion" type="qr_detector.py"
+        output="screen">
+    <param name="camera_topic"   value="/camera/image_raw"/>
+    <param name="odom_topic"     value="/Odometry"/>
+    <param name="min_detections" value="3"/>
+  </node>
+
+  <!-- ========== Менеджер инвентаря ========== -->
+  <node name="inventory_manager"
+        pkg="lidar_visual_fusion" type="inventory_manager.py"
+        output="screen">
+    <param name="save_path" value="$(env HOME)/inventory_result.csv"/>
+  </node>
+
+</launch>

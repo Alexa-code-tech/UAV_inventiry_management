@@ -1,0 +1,17 @@
+<launch>
+    <arg name="config_file" default="$(find my_launch)/config/vins/camera_config.yaml"/>
+    <arg name="imu_config" default="$(find my_launch)/config/vins/imu_config.yaml"/>
+    <arg name="output_path" default="/home/sasha/drone_ws/output/"/>
+
+    <node pkg="vins_estimator" type="vins_node" name="vins_node" output="screen">
+        <param name="config_file" value="$(arg config_file)"/>
+        <param name="imu_config" value="$(arg imu_config)"/>
+        <param name="output_path" value="$(arg output_path)"/>
+        <remap from="/camera/image_raw" to="/ТВОЙ_ТОПИК_КАМЕРЫ"/>
+        <remap from="/imu0" to="/mavros/imu/data"/>
+    </node>
+
+    <node pkg="tf" type="static_transform_publisher"
+          name="camera_tf_pub"
+          args="0.15 0 0.05 0 0 0 base_link camera_link 100" />
+</launch>

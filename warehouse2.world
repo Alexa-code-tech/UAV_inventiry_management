@@ -1,0 +1,861 @@
+<?xml version="1.0" ?>
+<sdf version="1.5">
+  <world name="default">
+    <!-- A global light source -->
+    <include>
+      <uri>model://sun</uri>
+          <static>true</static>
+    </include>
+    <!-- A ground plane -->
+    <include>
+      <uri>model://ground_plane</uri>
+          <static>true</static>
+    </include>
+    <include>
+      <uri>model://asphalt_plane</uri>
+          <static>true</static>
+    </include>
+
+    <!-- Only one ROS interface plugin is required per world, as any other plugin can connect a Gazebo
+         topic to a ROS topic (or vise versa). -->
+    <!-- <plugin name="ros_interface_plugin" filename="librotors_gazebo_ros_interface_plugin.so"/>-->
+
+    <physics name='default_physics' default='0' type='ode'>
+      <gravity>0 0 -9.8066</gravity>
+      <ode>
+        <solver>
+          <type>quick</type>
+          <iters>10</iters>
+          <sor>1.3</sor>
+          <use_dynamic_moi_rescaling>0</use_dynamic_moi_rescaling>
+        </solver>
+        <constraints>
+          <cfm>0</cfm>
+          <erp>0.2</erp>
+          <contact_max_correcting_vel>100</contact_max_correcting_vel>
+          <contact_surface_layer>0.001</contact_surface_layer>
+        </constraints>
+      </ode>
+      <max_step_size>0.002</max_step_size>
+      <real_time_factor>1</real_time_factor>
+      <real_time_update_rate>500</real_time_update_rate>
+      <magnetic_field>6e-06 2.3e-05 -4.2e-05</magnetic_field>
+    </physics>
+
+    <!-- SHELVES -->
+    <include>
+      <name>shelves 1</name>
+      <uri>model://shelves_high2</uri>
+      <scale>0.22 0.22 0.22</scale>
+      <pose>1 3.4 0   0 0 0</pose>
+          <static>true</static>
+    </include>
+    <include>
+      <name>shelves 2</name>
+      <uri>model://shelves_high2</uri>
+      <scale>0.22 0.22 0.22</scale>
+      <pose>-4.13394 3.4 0 0 -0 0</pose>
+          <static>true</static>
+    </include>
+
+    <!-- SHELVES -->
+    <include>
+      <name>shelves 3</name>
+      <uri>model://shelves_high2</uri>
+      <scale>0.22 0.22 0.22</scale>
+      <pose>1 4.7 0   0 0 0</pose>
+          <static>true</static>
+    </include>
+    <include>
+      <name>shelves 4</name>
+      <uri>model://shelves_high2</uri>
+      <scale>0.22 0.22 0.22</scale>
+      <pose>-4.13394 4.7 0 0 -0 0</pose>
+          <static>true</static>
+    </include>
+
+    <!-- SHELVES -->
+    <include>
+      <name>shelves 5</name>
+      <uri>model://shelves_high2_no_collision</uri>
+      <scale>0.22 0.22 0.22</scale>
+      <pose>1 -1.5 0   0 0 0</pose>
+          <static>true</static>
+    </include>
+    <include>
+      <name>shelves 6</name>
+      <uri>model://shelves_high2_no_collision</uri>
+      <scale>0.22 0.22 0.22</scale>
+      <pose>-4.13394 -1.5 0 0 -0 0</pose>
+          <static>true</static>
+    </include>
+
+    <!-- SHELVES -->
+    <include>
+      <name>shelves 7</name>
+      <uri>model://shelves_high2_no_collision</uri>
+      <scale>0.22 0.22 0.22</scale>
+      <pose>1 -2.8 0   0 0 0</pose>
+          <static>true</static>
+    </include>
+    <include>
+      <name>shelves 8</name>
+      <uri>model://shelves_high2_no_collision</uri>
+      <scale>0.22 0.22 0.22</scale>
+      <pose>-4.13394 -2.8 0 0 -0 0</pose>
+          <static>true</static>
+    </include>
+
+    <!-- SHELVES -->
+    <include>
+      <name>shelves 9</name>
+      <uri>model://shelves_high2_no_collision</uri>
+      <scale>0.22 0.22 0.22</scale>
+      <pose>1 -7.8 0   0 0 0</pose>
+          <static>true</static>
+    </include>
+    <include>
+      <name>shelves 10</name>
+      <uri>model://shelves_high2_no_collision</uri>
+      <scale>0.22 0.22 0.22</scale>
+      <pose>-4.13394 -7.8 0 0 -0 0</pose>
+          <static>true</static>
+    </include>
+
+    <!-- SHELVES -->
+    <include>
+      <name>shelves 11</name>
+      <uri>model://shelves_high2_no_collision</uri>
+      <scale>0.22 0.22 0.22</scale>
+      <pose>1 -9.1 0   0 0 0</pose>
+          <static>true</static>
+    </include>
+    <include>
+      <name>shelves 12</name>
+      <uri>model://shelves_high2_no_collision</uri>
+      <scale>0.22 0.22 0.22</scale>
+      <pose>-4.13394 -9.1 0 0 -0 0</pose>
+          <static>true</static>
+    </include>
+
+    <!-- =================================
+            Ground level
+         ================================= -->
+
+    <!-- PALLET 1 -->
+    <include>
+      <name>pallet 1 box</name>
+      <uri>model://big_box3</uri>
+      <scale>0.22 0.22 0.22</scale>
+      <pose>1.48626 3.390705 0.760253 0 0.000143 -1.57317</pose>
+          <static>true</static>
+    </include>
+    <include>
+      <name>pallet 1 support</name>
+      <uri>model://europallet</uri>
+      <scale>0.22 0.22 0.22</scale>
+      <pose>1.48088 3.400944 0.0635 0 0 -1.56736</pose>
+          <static>true</static>
+    </include>
+
+    <!-- PALLET 4 -->
+    <include>
+      <name>pallet 4 box</name>
+      <uri>model://big_box3</uri>
+      <scale>0.22 0.22 0.22</scale>
+      <pose>-2.37439 3.440964 0.776474 0 0 -1.59804</pose>
+          <static>true</static>
+    </include>
+    <include>
+      <name>pallet 4 support</name>
+      <uri>model://europallet</uri>
+      <scale>0.22 0.22 0.22</scale>
+      <pose>-2.40127 3.415746 0.0635 0 0 -1.5558</pose>
+          <static>true</static>
+    </include>
+
+    <!-- PALLET 7 -->
+    <include>
+      <name>pallet 7 box</name>
+      <uri>model://big_box4</uri>
+      <scale>0.22 0.22 0.22</scale>
+      <pose>2.61297 3.464591 0.774725 0 0 -1.59992</pose>
+          <static>true</static>
+    </include>
+    <include>
+      <name>pallet 7 support</name>
+      <uri>model://europallet</uri>
+      <scale>0.22 0.22 0.22</scale>
+      <pose>2.59788 3.454115 0.0635 0 0 -1.56921</pose>
+          <static>true</static>
+    </include>
+
+    <!-- PALLET 10 -->
+    <include>
+      <name>pallet 10 box</name>
+      <uri>model://big_box3</uri>
+      <scale>0.22 0.22 0.22</scale>
+      <pose>-3.45548 3.349857 0.774725 0 0 -1.56894</pose>
+          <static>true</static>
+    </include>
+    <include>
+      <name>pallet 10 support</name>
+      <uri>model://europallet</uri>
+      <scale>0.22 0.22 0.22</scale>
+      <pose>-3.41303 3.343739 0.0635 0 -0 1.56536</pose>
+          <static>true</static>
+    </include>
+
+    <!-- PALLET 11 -->
+    <include>
+      <name>pallet 11 box</name>
+      <uri>model://big_box4</uri>
+      <scale>0.22 0.22 0.22</scale>
+      <pose>-4.67439 3.440964 0.776474 0 0 -1.59804</pose>
+          <static>true</static>
+    </include>
+    <include>
+      <name>pallet 11 support</name>
+      <uri>model://europallet</uri>
+      <scale>0.22 0.22 0.22</scale>
+      <pose>-4.70127 3.415746 0.0635 0 0 -1.5558</pose>
+          <static>true</static>
+    </include>
+
+    <!-- PALLET 12 -->
+    <include>
+      <name>pallet 12 box</name>
+      <uri>model://big_box3</uri>
+      <scale>0.22 0.22 0.22</scale>
+      <pose>-5.95548 3.349857 0.774725 0 0 -1.56894</pose>
+          <static>true</static>
+    </include>
+    <include>
+      <name>pallet 12 support</name>
+      <uri>model://europallet</uri>
+      <scale>0.22 0.22 0.22</scale>
+      <pose>-5.91303 3.343739 0.0635 0 -0 1.56536</pose>
+          <static>true</static>
+    </include>
+
+    <!-- EMPTY PALLET 18 -->
+    <include>
+      <name>pallet 18 support</name>
+      <uri>model://europallet</uri>
+      <scale>0.22 0.22 0.22</scale>
+      <pose>0.234986 3.337637 0.0635 0 -0 1.56536</pose>
+          <static>true</static>
+    </include>
+    <include>
+      <name>pallet 18b support</name>
+      <uri>model://europallet</uri>
+      <scale>0.22 0.22 0.22</scale>
+      <pose>0.134986 3.337637 0.2102 0 -0 1.2</pose>
+          <static>true</static>
+    </include>
+
+    <!-- =================================
+            1st level
+         ================================= -->
+
+    <!-- PALLET 2 -->
+    <include>
+      <name>pallet 2 box</name>
+      <uri>model://big_box3</uri>
+      <scale>0.22 0.22 0.22</scale>
+      <pose>-3.25548 3.349857 2.3397 0 0 -1.56894</pose>
+          <static>true</static>
+    </include>
+    <include>
+      <name>pallet 2 support</name>
+      <uri>model://europallet</uri>
+      <scale>0.22 0.22 0.22</scale>
+      <pose>-3.21303 3.343739 1.6373 0 -0 1.56536</pose>
+          <static>true</static>
+    </include>
+
+
+    <!-- PALLET 5 - SMALL BOXES -->
+    <include>
+      <name>pallet 5 multi boxes</name>
+      <uri>model://pallet_full</uri>
+      <scale>0.22 0.22 0.22</scale>
+      <pose>0.334986 3.337637 1.63184 0 0 -1.57575</pose>
+      <static>true</static>
+    </include>
+
+    <!-- PALLET 17 - SMALL BOXES -->
+    <include>
+      <name>pallet 17 multi boxes</name>
+      <uri>model://pallet_full</uri>
+      <scale>0.22 0.22 0.22</scale>
+      <pose>0.334986 3.337637 2.31 0 0 -1.57575</pose>
+      <static>true</static>
+    </include>
+
+    <!-- PALLET 8 -->
+    <include>
+      <name>pallet 8 box</name>
+      <uri>model://big_box4</uri>
+      <scale>0.22 0.22 0.22</scale>
+      <pose>2.56918 3.321158 2.35696 0 0 -1.56652</pose>
+          <static>true</static>
+    </include>
+    <include>
+      <name>pallet 8 support</name>
+      <uri>model://europallet</uri>
+      <scale>0.22 0.22 0.22</scale>
+      <pose>2.64128 3.308661 1.64676 0 0 -1.55378</pose>
+          <static>true</static>
+    </include>
+
+    <!-- PALLET 9 -->
+    <include>
+      <name>pallet 9 box</name>
+      <uri>model://big_box4</uri>
+      <scale>0.22 0.22 0.22</scale>
+      <pose>-2.30257 2.987644 2.35696 0 0 -1.57937</pose>
+          <static>true</static>
+    </include>
+    <include>
+      <name>pallet 9 support</name>
+      <uri>model://europallet</uri>
+      <scale>0.22 0.22 0.22</scale>
+      <pose>-2.28744 2.915349 1.64676 0 -0 1.5541</pose>
+          <static>true</static>
+    </include>
+
+    <!-- PALLET 13 -->
+    <include>
+      <name>pallet 13 box</name>
+      <uri>model://big_box3</uri>
+      <scale>0.22 0.22 0.22</scale>
+      <pose>-4.67439 3.440964 2.35696 0 0 -1.59804</pose>
+          <static>true</static>
+    </include>
+    <include>
+      <name>pallet 13 support</name>
+      <uri>model://europallet</uri>
+      <scale>0.22 0.22 0.22</scale>
+      <pose>-4.70127 3.415746 1.64676 0 0 -1.5558</pose>
+          <static>true</static>
+    </include>
+
+    <!-- PALLET 14 -->
+    <include>
+      <name>pallet 14 box</name>
+      <uri>model://big_box4</uri>
+      <scale>0.22 0.22 0.22</scale>
+      <pose>-5.95548 3.349857 2.35696 0 0 -1.56894</pose>
+          <static>true</static>
+    </include>
+    <include>
+      <name>pallet 14 support</name>
+      <uri>model://europallet</uri>
+      <scale>0.22 0.22 0.22</scale>
+      <pose>-5.91303 3.343739 1.64676 0 -0 1.56536</pose>
+          <static>true</static>
+    </include>
+
+    <!-- PALLET 19 -->
+    <include>
+      <name>pallet 19 box</name>
+      <uri>model://big_box3</uri>
+      <scale>0.22 0.22 0.22</scale>
+      <pose>-0.8 3.337637 2.3397 0 0 -1.56894</pose>
+          <static>true</static>
+    </include>
+    <include>
+      <name>pallet 19 support</name>
+      <uri>model://europallet</uri>
+      <scale>0.22 0.22 0.22</scale>
+      <pose>-0.8 3.337637 1.6373 0 -0 1.56536</pose>
+          <static>true</static>
+    </include>
+
+
+    <!-- =================================
+            2nd level
+         ================================= -->
+
+    <!-- PALLET 6 - SMALL BOXES -->
+    <include>
+      <name>pallet 6 multi boxes</name>
+      <uri>model://pallet_full</uri>
+      <scale>0.22 0.22 0.22</scale>
+      <pose>-2.18966 3.351916 3.27046 0 0 -1.58092</pose>
+      <static>true</static>
+    </include>
+
+    <!-- PALLET 15 - SMALL BOXES -->
+    <include>
+      <name>pallet 15 multi boxes</name>
+      <uri>model://pallet_full</uri>
+      <scale>0.22 0.22 0.22</scale>
+      <pose>-4.68966 3.351916 3.27046 0 0 -1.58092</pose>
+      <static>true</static>
+    </include>
+
+    <!-- PALLET 16 - SMALL BOXES -->
+    <include>
+      <name>pallet 16 multi boxes</name>
+      <uri>model://pallet_full</uri>
+      <scale>0.22 0.22 0.22</scale>
+      <pose>-5.88966 3.351916 3.27046 0 0 -1.58092</pose>
+      <static>true</static>
+    </include>
+
+
+    <!-- PALLET 20 -->
+    <include>
+      <name>pallet 20 box</name>
+      <uri>model://big_box4</uri>
+      <scale>0.22 0.22 0.22</scale>
+      <pose>-3.25548 3.349857 3.97286 0 0 -1.56894</pose>
+          <static>true</static>
+    </include>
+    <include>
+      <name>pallet 20 support</name>
+      <uri>model://europallet</uri>
+      <scale>0.22 0.22 0.22</scale>
+      <pose>-3.21303 3.343739 3.27046 0 -0 1.56536</pose>
+          <static>true</static>
+    </include>
+
+    <!-- PALLET 21 -->
+    <include>
+      <name>pallet 21 box</name>
+      <uri>model://big_box3</uri>
+      <scale>0.22 0.22 0.22</scale>
+      <pose>2.56918 3.321158 3.97286 0 0 -1.56652</pose>
+          <static>true</static>
+    </include>
+    <include>
+      <name>pallet 21 support</name>
+      <uri>model://europallet</uri>
+      <scale>0.22 0.22 0.22</scale>
+      <pose>2.64128 3.308661 3.27046 0 0 -1.55378</pose>
+          <static>true</static>
+    </include>
+
+    <!-- PALLET 22 -->
+    <include>
+      <name>pallet 22 box</name>
+      <uri>model://big_box4</uri>
+      <scale>0.22 0.22 0.22</scale>
+      <pose>-0.8 3.337637 3.97286 0 0 -1.56894</pose>
+          <static>true</static>
+    </include>
+    <include>
+      <name>pallet 22 support</name>
+      <uri>model://europallet</uri>
+      <scale>0.22 0.22 0.22</scale>
+      <pose>-0.8 3.337637 3.27046 0 -0 1.56536</pose>
+          <static>true</static>
+    </include>
+
+
+    <!-- =================================
+            Shelves B - Ground level
+         ================================= -->
+
+    <!-- PALLET 1 -->
+    <include>
+      <name>pallet B-0-1 box</name>
+      <uri>model://big_box3</uri>
+      <scale>0.22 0.22 0.22</scale>
+      <pose>1.48626 -1.5 0.760253 0 0.000143 1.57317</pose>
+          <static>true</static>
+    </include>
+    <include>
+      <name>pallet B-0-1 support</name>
+      <uri>model://europallet</uri>
+      <scale>0.22 0.22 0.22</scale>
+      <pose>1.48088 -1.5 0.0635 0 0 1.56736</pose>
+          <static>true</static>
+    </include>
+
+    <!-- PALLET 7 -->
+    <include>
+      <name>pallet B-0-2 box</name>
+      <uri>model://big_box4</uri>
+      <scale>0.22 0.22 0.22</scale>
+      <pose>2.9 -1.5 0.774725 0 0 1.59992</pose>
+          <static>true</static>
+    </include>
+    <include>
+      <name>pallet B-0-2 support</name>
+      <uri>model://europallet</uri>
+      <scale>0.22 0.22 0.22</scale>
+      <pose>2.9 -1.5 0.0635 0 0 1.56921</pose>
+          <static>true</static>
+    </include>
+
+
+    <!-- =================================
+            Shelves B - 1st level
+         ================================= -->
+
+    <!-- PALLET 1 -->
+    <include>
+      <name>pallet B-1-1 box</name>
+      <uri>model://big_box3</uri>
+      <scale>0.22 0.22 0.22</scale>
+      <pose>1.6 -1.5 2.30 0 0.000143 1.57317</pose>
+      <static>true</static>
+    </include>
+    <include>
+      <name>pallet B-1-1-1 support1</name>
+      <uri>model://europallet</uri>
+      <scale>0.22 0.22 0.22</scale>
+      <pose>1.6 -1.5 1.60 0 0 1.56736</pose>
+      <static>true</static>
+    </include>
+
+    <!-- PALLET 7 -->
+    <include>
+      <name>pallet B-1-2 box</name>
+      <uri>model://big_box3</uri>
+      <scale>0.22 0.22 0.22</scale>
+      <pose>2.9 -1.5 2.30 0 0 1.59992</pose>
+      <static>true</static>
+    </include>
+    <include>
+      <name>pallet B-1-2 support1</name>
+      <uri>model://europallet</uri>
+      <scale>0.22 0.22 0.22</scale>
+      <pose>2.9 -1.5 1.60 0 0 1.56921</pose>
+      <static>true</static>
+    </include>
+
+    <!-- =================================
+            Shelves B - 2st level
+         ================================= -->
+
+    <!-- PALLET 1 -->
+    <include>
+      <name>pallet B-2-1 box</name>
+      <uri>model://big_box4</uri>
+      <scale>0.22 0.22 0.22</scale>
+      <pose>1.6 -1.5 3.97 0 0.000143 1.57317</pose>
+      <static>true</static>
+    </include>
+    <include>
+      <name>pallet B-1-1-1 support</name>
+      <uri>model://europallet</uri>
+      <scale>0.22 0.22 0.22</scale>
+      <pose>1.6 -1.5 3.27 0 0 1.56736</pose>
+      <static>true</static>
+    </include>
+
+    <!-- PALLET 7 -->
+    <include>
+      <name>pallet B-2-2 box</name>
+      <uri>model://big_box3</uri>
+      <scale>0.22 0.22 0.22</scale>
+      <pose>2.9 -1.5 3.97 0 0 1.59992</pose>
+      <static>true</static>
+    </include>
+    <include>
+      <name>pallet B-1-2 support</name>
+      <uri>model://europallet</uri>
+      <scale>0.22 0.22 0.22</scale>
+      <pose>2.9 -1.5 3.27 0 0 1.56921</pose>
+      <static>true</static>
+    </include>
+
+    <!-- ACCESSORIES -->
+    <include>
+      <name>first_2015_trash_can</name>
+      <scale>0.22 0.22 0.22</scale>
+      <uri>model://first_2015_trash_can</uri>
+      <pose>3.8239 3.403029 0 0 -0 0</pose>
+          <static>true</static>
+    </include>
+
+
+    <include>
+      <name>grey_wall</name>
+      <uri>model://grey_wall</uri>
+      <pose>-8.34545 0 0 0 0 -1.57</pose>
+          <static>true</static>
+    </include>
+
+    <include>
+      <name>grey_wall2</name>
+      <uri>model://grey_wall</uri>
+      <pose>-3.5 9 0 0 0 0</pose>
+          <static>true</static>
+    </include>
+    
+
+
+
+    <!-- CEILING - prevents drone from flying out of warehouse -->
+    <model name='ceiling'>
+      <static>true</static>
+      <pose>-1.5 1.0 5.5 0 0 0</pose>
+      <link name='ceiling_link'>
+        <collision name='ceiling_col'>
+          <geometry><box><size>20 20 0.1</size></box></geometry>
+        </collision>
+        <visual name='ceiling_vis'>
+          <geometry><box><size>20 20 0.1</size></box></geometry>
+          <material><ambient>0.75 0.75 0.75 1</ambient><diffuse>0.75 0.75 0.75 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- WALLS - close the warehouse -->
+    <model name='wall_north'>
+      <static>true</static>
+      <pose>-1.5 9.5 2.5 0 0 0</pose>
+      <link name='link'>
+        <collision name='col'><geometry><box><size>20 0.2 5.0</size></box></geometry></collision>
+        <visual name='vis'><geometry><box><size>20 0.2 5.0</size></box></geometry></visual>
+      </link>
+    </model>
+    <model name='wall_south'>
+      <static>true</static>
+      <pose>-1.5 -7.5 2.5 0 0 0</pose>
+      <link name='link'>
+        <collision name='col'><geometry><box><size>20 0.2 5.0</size></box></geometry></collision>
+        <visual name='vis'><geometry><box><size>20 0.2 5.0</size></box></geometry></visual>
+      </link>
+    </model>
+    <model name='wall_east'>
+      <static>true</static>
+      <pose>8.5 1.0 2.5 0 0 0</pose>
+      <link name='link'>
+        <collision name='col'><geometry><box><size>0.2 17 5.0</size></box></geometry></collision>
+        <visual name='vis'><geometry><box><size>0.2 17 5.0</size></box></geometry></visual>
+      </link>
+    </model>
+
+
+    <!-- ===== QR-КОДЫ (автогенерация) ===== -->
+
+    <!-- QR для "pallet 1 box" (ITEM_001) -->
+    <include>
+      <name>qr_item_001_instance</name>
+      <uri>model://qr_item_001</uri>
+      <pose>1.4863 2.6107 0.7600 0 0 0</pose>
+      <static>true</static>
+    </include>
+
+    <!-- QR для "pallet 4 box" (ITEM_002) -->
+    <include>
+      <name>qr_item_002_instance</name>
+      <uri>model://qr_item_002</uri>
+      <pose>-2.3744 2.6610 0.7760 0 0 0</pose>
+      <static>true</static>
+    </include>
+
+    <!-- QR для "pallet 7 box" (ITEM_003) -->
+    <include>
+      <name>qr_item_003_instance</name>
+      <uri>model://qr_item_003</uri>
+      <pose>2.6130 2.6846 0.7750 0 0 0</pose>
+      <static>true</static>
+    </include>
+
+    <!-- QR для "pallet 10 box" (ITEM_004) -->
+    <include>
+      <name>qr_item_004_instance</name>
+      <uri>model://qr_item_004</uri>
+      <pose>-3.4555 2.5699 0.7750 0 0 0</pose>
+      <static>true</static>
+    </include>
+
+    <!-- QR для "pallet 11 box" (ITEM_005) -->
+    <include>
+      <name>qr_item_005_instance</name>
+      <uri>model://qr_item_005</uri>
+      <pose>-4.6744 2.6610 0.7760 0 0 0</pose>
+      <static>true</static>
+    </include>
+
+    <!-- QR для "pallet 12 box" (ITEM_006) -->
+    <include>
+      <name>qr_item_006_instance</name>
+      <uri>model://qr_item_006</uri>
+      <pose>-5.9555 2.5699 0.7750 0 0 0</pose>
+      <static>true</static>
+    </include>
+
+    <!-- QR для "pallet 2 box" (ITEM_007) -->
+    <include>
+      <name>qr_item_007_instance</name>
+      <uri>model://qr_item_007</uri>
+      <pose>-3.2555 2.5699 2.3400 0 0 0</pose>
+      <static>true</static>
+    </include>
+
+    <!-- QR для "pallet 5 multi boxes" (ITEM_008) -->
+    <include>
+      <name>qr_item_008_instance</name>
+      <uri>model://qr_item_008</uri>
+      <pose>0.3350 2.5576 1.6320 0 0 0</pose>
+      <static>true</static>
+    </include>
+
+    <!-- QR для "pallet 17 multi boxes" (ITEM_009) -->
+    <include>
+      <name>qr_item_009_instance</name>
+      <uri>model://qr_item_009</uri>
+      <pose>0.3350 2.5576 2.3100 0 0 0</pose>
+      <static>true</static>
+    </include>
+
+    <!-- QR для "pallet 8 box" (ITEM_010) -->
+    <include>
+      <name>qr_item_010_instance</name>
+      <uri>model://qr_item_010</uri>
+      <pose>2.5692 2.5412 2.3570 0 0 0</pose>
+      <static>true</static>
+    </include>
+
+    <!-- QR для "pallet 9 box" (ITEM_011) -->
+    <include>
+      <name>qr_item_011_instance</name>
+      <uri>model://qr_item_011</uri>
+      <pose>-2.3026 2.2076 2.3570 0 0 0</pose>
+      <static>true</static>
+    </include>
+
+    <!-- QR для "pallet 13 box" (ITEM_012) -->
+    <include>
+      <name>qr_item_012_instance</name>
+      <uri>model://qr_item_012</uri>
+      <pose>-4.6744 2.6610 2.3570 0 0 0</pose>
+      <static>true</static>
+    </include>
+
+    <!-- QR для "pallet 14 box" (ITEM_013) -->
+    <include>
+      <name>qr_item_013_instance</name>
+      <uri>model://qr_item_013</uri>
+      <pose>-5.9555 2.5699 2.3570 0 0 0</pose>
+      <static>true</static>
+    </include>
+
+    <!-- QR для "pallet 19 box" (ITEM_014) -->
+    <include>
+      <name>qr_item_014_instance</name>
+      <uri>model://qr_item_014</uri>
+      <pose>-0.8000 2.5576 2.3400 0 0 0</pose>
+      <static>true</static>
+    </include>
+
+    <!-- QR для "pallet 6 multi boxes" (ITEM_015) -->
+    <include>
+      <name>qr_item_015_instance</name>
+      <uri>model://qr_item_015</uri>
+      <pose>-2.1897 2.5719 3.2700 0 0 0</pose>
+      <static>true</static>
+    </include>
+
+    <!-- QR для "pallet 15 multi boxes" (ITEM_016) -->
+    <include>
+      <name>qr_item_016_instance</name>
+      <uri>model://qr_item_016</uri>
+      <pose>-4.6897 2.5719 3.2700 0 0 0</pose>
+      <static>true</static>
+    </include>
+
+    <!-- QR для "pallet 16 multi boxes" (ITEM_017) -->
+    <include>
+      <name>qr_item_017_instance</name>
+      <uri>model://qr_item_017</uri>
+      <pose>-5.8897 2.5719 3.2700 0 0 0</pose>
+      <static>true</static>
+    </include>
+
+    <!-- QR для "pallet 20 box" (ITEM_018) -->
+    <include>
+      <name>qr_item_018_instance</name>
+      <uri>model://qr_item_018</uri>
+      <pose>-3.2555 2.5699 3.9730 0 0 0</pose>
+      <static>true</static>
+    </include>
+
+    <!-- QR для "pallet 21 box" (ITEM_019) -->
+    <include>
+      <name>qr_item_019_instance</name>
+      <uri>model://qr_item_019</uri>
+      <pose>2.5692 2.5412 3.9730 0 0 0</pose>
+      <static>true</static>
+    </include>
+
+    <!-- QR для "pallet 22 box" (ITEM_020) -->
+    <include>
+      <name>qr_item_020_instance</name>
+      <uri>model://qr_item_020</uri>
+      <pose>-0.8000 2.5576 3.9730 0 0 0</pose>
+      <static>true</static>
+    </include>
+
+    <!-- QR для "pallet B-0-1 box" (ITEM_021) -->
+    <include>
+      <name>qr_item_021_instance</name>
+      <uri>model://qr_item_021</uri>
+      <pose>1.4863 -0.7200 0.7600 0 0 0</pose>
+      <static>true</static>
+    </include>
+
+    <!-- QR для "pallet B-0-2 box" (ITEM_022) -->
+    <include>
+      <name>qr_item_022_instance</name>
+      <uri>model://qr_item_022</uri>
+      <pose>2.9000 -0.7200 0.7750 0 0 0</pose>
+      <static>true</static>
+    </include>
+
+    <!-- QR для "pallet B-1-1 box" (ITEM_023) -->
+    <include>
+      <name>qr_item_023_instance</name>
+      <uri>model://qr_item_023</uri>
+      <pose>1.6000 -0.7200 2.3000 0 0 0</pose>
+      <static>true</static>
+    </include>
+
+    <!-- QR для "pallet B-1-2 box" (ITEM_024) -->
+    <include>
+      <name>qr_item_024_instance</name>
+      <uri>model://qr_item_024</uri>
+      <pose>2.9000 -0.7200 2.3000 0 0 0</pose>
+      <static>true</static>
+    </include>
+
+    <!-- QR для "pallet B-2-1 box" (ITEM_025) -->
+    <include>
+      <name>qr_item_025_instance</name>
+      <uri>model://qr_item_025</uri>
+      <pose>1.6000 -0.7200 3.9700 0 0 0</pose>
+      <static>true</static>
+    </include>
+
+    <!-- QR для "pallet B-2-2 box" (ITEM_026) -->
+    <include>
+      <name>qr_item_026_instance</name>
+      <uri>model://qr_item_026</uri>
+      <pose>2.9000 -0.7200 3.9700 0 0 0</pose>
+      <static>true</static>
+    </include>
+
+
+  
+    <model name='wall_west'>
+      <static>true</static>
+      <pose>-9.5 1.0 2.5 0 0 0</pose>
+      <link name='link'>
+        <collision name='col'><geometry><box><size>0.2 17 5.0</size></box></geometry></collision>
+        <visual name='vis'>
+          <geometry><box><size>0.2 17 5.0</size></box></geometry>
+          <material><ambient>0.8 0.8 0.8 1</ambient><diffuse>0.8 0.8 0.8 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+  </world>
+</sdf>

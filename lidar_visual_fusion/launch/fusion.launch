@@ -1,0 +1,20 @@
+<launch>
+  <arg name="lio_topic"   default="/Odometry"/>
+  <arg name="vins_topic"  default="/vins_estimator/odometry"/>
+  <arg name="world_frame" default="camera_init"/>
+
+  <node name="odom_bridge"
+        pkg="my_launch" type="odom_bridge.py"
+        output="screen" respawn="true" respawn_delay="2.0">
+    <param name="lio_topic"   value="$(arg lio_topic)"/>
+    <param name="vins_topic"  value="$(arg vins_topic)"/>
+    <param name="world_frame" value="$(arg world_frame)"/>
+  </node>
+
+  <node name="ekf_fusion"
+        pkg="robot_localization" type="ekf_localization_node"
+        output="screen" clear_params="true">
+    <rosparam command="load"
+              file="$(find my_launch)/config/ekf.yaml"/>
+  </node>
+</launch>

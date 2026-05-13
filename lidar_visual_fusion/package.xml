@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>lidar_visual_fusion</name>
+  <version>1.0.0</version>
+  <description>
+    Bridge node between Fast-LIO2 and VINS-Fusion.
+    Aligns coordinate frames, relays both odometries to
+    robot_localization EKF for weighted pose fusion.
+  </description>
+
+  <maintainer email="user@example.com">user</maintainer>
+  <license>MIT</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <depend>rospy</depend>
+  <depend>std_msgs</depend>
+  <depend>nav_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>tf2_ros</depend>
+  <depend>tf2_geometry_msgs</depend>
+  <depend>robot_localization</depend>
+
+  <exec_depend>python3-numpy</exec_depend>
+</package>

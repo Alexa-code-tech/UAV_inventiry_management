@@ -1,0 +1,96 @@
+# ============================================================
+# VINS-Fusion config template
+#
+# ОБЯЗАТЕЛЬНО заполни секции помеченные как ЗАМЕНИТЬ
+# перед первым запуском. Без правильных экстринсиков и
+# интринсиков VINS не сойдётся.
+# ============================================================
+
+# Путь к словарю для loop closure.
+# Лежит в VINS-Fusion/support_files/brief_k10L6.bin
+brief_pattern_file: "/PATH/TO/VINS-Fusion/support_files/brief_k10L6.bin"   # ЗАМЕНИТЬ
+
+# ── Модель камеры ─────────────────────────────────────────────────────────
+# Поддерживаемые: PINHOLE, MEI, EUCM, DOUBLE_SPHERE
+model_type: PINHOLE
+camera_name: cam0
+
+# Разрешение — ЗАМЕНИТЬ
+image_width:  640
+image_height: 480
+
+# Внутренние параметры (откалибруй через kalibr или ROS camera_calibration)
+# pinhole: fx, fy, cx, cy в пикселях
+projection_parameters:
+  fx: 458.654    # ЗАМЕНИТЬ
+  fy: 457.296    # ЗАМЕНИТЬ
+  cx: 367.215    # ЗАМЕНИТЬ
+  cy: 248.375    # ЗАМЕНИТЬ
+
+# Дисторсия (модель radtan = plumb_bob)
+distortion_model: radtan
+distortion_parameters:
+  k1: -0.28340811      # ЗАМЕНИТЬ
+  k2:  0.07395907      # ЗАМЕНИТЬ
+  p1:  0.00019359      # ЗАМЕНИТЬ
+  p2:  1.76187114e-05  # ЗАМЕНИТЬ
+
+# ── IMU ───────────────────────────────────────────────────────────────────
+# Частота IMU в Гц
+imu_rate: 200
+
+# Шум и random walk (возьми из datasheet или откалибруй через imu_utils)
+# Типичные значения для MPU-6000: acc_n=0.1, gyr_n=0.005
+# Типичные значения для Pixhawk IMU: acc_n=0.08, gyr_n=0.004
+acc_n:  0.1      # noise density ускорения  (m/s^2/sqrt(Hz))  ЗАМЕНИТЬ
+gyr_n:  0.01     # noise density гироскопа  (rad/s/sqrt(Hz))  ЗАМЕНИТЬ
+acc_w:  0.001    # random walk ускорения    (m/s^3/sqrt(Hz))  ЗАМЕНИТЬ
+gyr_w:  1.0e-5   # random walk гироскопа   (rad/s^2/sqrt(Hz)) ЗАМЕНИТЬ
+
+# ── Экстринсики камера → IMU ──────────────────────────────────────────────
+# T_bc: трансформация из фрейма камеры в фрейм IMU
+# P_imu = R_bc * P_cam + t_bc
+#
+# КАК ОТКАЛИБРОВАТЬ:
+#   1. Установи kalibr: https://github.com/ethz-asl/kalibr
+#   2. Запиши rosbag с шахматной доской (держи неподвижно IMU минуту, потом двигай)
+#   3. kalibr_calibrate_imu_camera --target aprilgrid.yaml \
+#        --imu imu.yaml --imu-models calibrated \
+#        --cam camchain.yaml --bag calib.bag
+#   4. Скопируй R_imu_cam и t_imu_cam из результата
+
+extrinsicRotation:
+  data: [ 1.0,  0.0,  0.0,    # ЗАМЕНИТЬ на реальную матрицу 3×3
+          0.0,  1.0,  0.0,
+          0.0,  0.0,  1.0]
+
+extrinsicTranslation:
+  data: [0.0, 0.0, 0.0]       # ЗАМЕНИТЬ на реальный вектор [tx, ty, tz] в метрах
+
+# ── Топики ROS ────────────────────────────────────────────────────────────
+image_topic: "/camera/image_raw"   # ЗАМЕНИТЬ на свой топик изображения
+imu_topic:   "/imu/data"           # ЗАМЕНИТЬ на свой топик IMU
+
+# ── Параметры алгоритма ───────────────────────────────────────────────────
+# Сколько точек отслеживать (больше = точнее, но медленнее)
+max_cnt:   150
+# Минимальное расстояние между фичами в пикселях
+min_dist:   30
+# Частота публикации odometry (Гц). Не может быть больше частоты камеры.
+freq:       10
+# Порог RANSAC для fundamental matrix (пиксели)
+F_threshold: 1.0
+# Показывать окно трекинга (1=да, только для отладки, отключи на дроне)
+show_track:   0
+# CLAHE эквализация гистограммы (помогает в неравномерном освещении)
+equalize:     1
+# Fisheye камера?
+fisheye:      0
+
+# ── Оптимизация ───────────────────────────────────────────────────────────
+max_solver_time:     0.04   # максимальное время нелинейного решателя (с)
+max_num_iterations:     8   # максимум итераций Ceres
+
+# ── Loop closure (pose_graph нода) ────────────────────────────────────────
+load_previous_pose_graph: 0
+pose_graph_save_path: "/tmp/vins_pose_graph/"

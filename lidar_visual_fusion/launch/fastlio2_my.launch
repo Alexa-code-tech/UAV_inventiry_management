@@ -1,0 +1,18 @@
+<launch>
+    <arg name="lidar_type" default="livox" />
+    <arg name="imu_topic" default="/mavros/imu/data" />
+    <arg name="point_cloud_topic" default="/livox/lidar" />
+
+    <node pkg="fastlio" type="fastlio_node" name="fastlio2" output="screen">
+        <param name="lidar_type" value="$(arg lidar_type)"/>
+        <param name="imu_topic" value="$(arg imu_topic)"/>
+        <param name="point_cloud_topic" value="$(arg point_cloud_topic)"/>
+        <!-- ортогональные значения для extrinsic..., если не знаешь — ставь по-умолчанию: -->
+        <param name="extrinsicRot" value="[1, 0, 0, 0, 1, 0, 0, 0, 1]"/>
+        <param name="extrinsicTrans" value="[0.05, 0.02, 0.04]"/>
+        <param name="publish_tf" value="true"/>
+    </node>
+
+    <!-- связь lidar_link и base_link -->
+    <node pkg="tf" type="static_transform_publisher" name="lidar_tf_pub" args="0.0 0.0 0.10 0 0 0 base_link lidar_link 100" />
+</launch>
