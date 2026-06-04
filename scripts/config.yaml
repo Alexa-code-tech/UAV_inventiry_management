@@ -1,0 +1,135 @@
+# ============================================
+# UAV Inventory Management - Configuration
+# ============================================
+
+warehouse:
+  bounds:
+    x_min: -10.0
+    x_max: 9.0
+    y_min: -8.0
+    y_max: 10.0
+    z_min: 0.0
+    z_max: 5.5
+
+navigation:
+  takeoff_height: 1.0
+  flight_speed: 0.4
+  waypoint_tolerance: 0.25
+  waypoint_timeout: 120
+  
+  # Путь сканирования (строго следуем маршруту)
+  scanning_waypoints:
+    - {x: 0, y: 3.3, z: 0.8, pause: 1.0, description: "Ground level start"}
+    - {x: 1.5, y: 3.3, z: 0.8, pause: 2.0, description: "ITEM_001"}
+    - {x: -2.4, y: 3.4, z: 0.8, pause: 2.0, description: "ITEM_002"}
+    - {x: 2.6, y: 3.5, z: 0.8, pause: 2.0, description: "ITEM_003"}
+    - {x: -3.5, y: 3.3, z: 0.8, pause: 2.0, description: "ITEM_004"}
+    - {x: -4.7, y: 3.4, z: 0.8, pause: 2.0, description: "ITEM_005"}
+    - {x: -6.0, y: 3.3, z: 0.8, pause: 2.0, description: "ITEM_006"}
+    
+    # 1st level
+    - {x: 0, y: 3.3, z: 1.65, pause: 1.0, description: "Move to 1st level"}
+    - {x: -3.2, y: 3.3, z: 2.3, pause: 2.0, description: "ITEM_007"}
+    - {x: 0.33, y: 3.3, z: 1.65, pause: 2.0, description: "ITEM_008"}
+    - {x: 0.33, y: 3.3, z: 2.31, pause: 2.0, description: "ITEM_009"}
+    - {x: 2.64, y: 3.3, z: 1.65, pause: 2.0, description: "ITEM_010"}
+    - {x: -2.3, y: 2.9, z: 2.3, pause: 2.0, description: "ITEM_011"}
+    - {x: -4.7, y: 3.4, z: 2.35, pause: 2.0, description: "ITEM_012"}
+    - {x: -6.0, y: 3.3, z: 2.35, pause: 2.0, description: "ITEM_013"}
+    - {x: -0.8, y: 3.3, z: 2.3, pause: 2.0, description: "ITEM_014"}
+    
+    # 2nd level
+    - {x: 0, y: 3.3, z: 3.3, pause: 1.0, description: "Move to 2nd level"}
+    - {x: -2.2, y: 3.3, z: 3.27, pause: 2.0, description: "ITEM_015"}
+    - {x: -4.7, y: 3.3, z: 3.27, pause: 2.0, description: "ITEM_016"}
+    - {x: -5.9, y: 3.3, z: 3.27, pause: 2.0, description: "ITEM_017"}
+    - {x: -3.2, y: 3.3, z: 3.97, pause: 2.0, description: "ITEM_018"}
+    - {x: 2.57, y: 3.3, z: 3.97, pause: 2.0, description: "ITEM_019"}
+    - {x: -0.8, y: 3.3, z: 3.97, pause: 2.0, description: "ITEM_020"}
+    
+    # Shelf B - ground level
+    - {x: 0, y: -1.5, z: 0.8, pause: 1.0, description: "Move to Shelf B ground"}
+    - {x: 1.48, y: -1.5, z: 0.8, pause: 2.0, description: "ITEM_021"}
+    - {x: 2.9, y: -1.5, z: 0.8, pause: 2.0, description: "ITEM_022"}
+    
+    # Shelf B - 1st level
+    - {x: 0, y: -1.5, z: 1.65, pause: 1.0, description: "Move to Shelf B 1st level"}
+    - {x: 1.6, y: -1.5, z: 2.3, pause: 2.0, description: "ITEM_023"}
+    - {x: 2.9, y: -1.5, z: 2.3, pause: 2.0, description: "ITEM_024"}
+    
+    # Shelf B - 2nd level
+    - {x: 0, y: -1.5, z: 3.3, pause: 1.0, description: "Move to Shelf B 2nd level"}
+    - {x: 1.6, y: -1.5, z: 3.97, pause: 2.0, description: "ITEM_025"}
+    - {x: 2.9, y: -1.5, z: 3.97, pause: 2.0, description: "ITEM_026"}
+    
+    - {x: 0, y: 0, z: 1.0, pause: 2.0, description: "Return to home"}
+
+obstacle_avoidance:
+  # VFH+ параметры
+  danger_distance: 1.0  # мет��ы
+  warning_distance: 1.5  # метры
+  front_sector_degrees: 60  # угол впереди
+  
+  # Уклонение
+  evade_distance: 1.5  # как далеко уклониться
+  evade_height_offset: 0.3  # поднять при уклонении
+  
+qr_detection:
+  # OpenCV параметры
+  min_contour_area: 100
+  detection_timeout: 8.0
+  frame_width: 640
+  frame_height: 480
+  
+  # Confidence threshold для QR
+  qr_confidence_threshold: 0.7
+
+inventory:
+  # Все 26 товаров с эталонными позициями и описанием
+  items:
+    ITEM_001: {x: 1.48626, y: 3.39, z: 0.76, shelf: "A", level: "ground", name: "Electronics Box A1", sku: "ELB-001"}
+    ITEM_002: {x: -2.37439, y: 3.44, z: 0.78, shelf: "A", level: "ground", name: "Industrial Motor", sku: "IND-002"}
+    ITEM_003: {x: 2.61297, y: 3.46, z: 0.77, shelf: "A", level: "ground", name: "Control Panel", sku: "CTR-003"}
+    ITEM_004: {x: -3.45548, y: 3.35, z: 0.77, shelf: "A", level: "ground", name: "Power Supply Unit", sku: "PSU-004"}
+    ITEM_005: {x: -4.67439, y: 3.44, z: 0.78, shelf: "A", level: "ground", name: "Voltage Regulator", sku: "VLT-005"}
+    ITEM_006: {x: -5.95548, y: 3.35, z: 0.77, shelf: "A", level: "ground", name: "Transformer Block", sku: "TRN-006"}
+    
+    ITEM_007: {x: -3.25548, y: 3.35, z: 2.34, shelf: "A", level: "1st", name: "Relay Module", sku: "REL-007"}
+    ITEM_008: {x: 0.334986, y: 3.34, z: 1.63, shelf: "A", level: "1st", name: "Small Components Box", sku: "SMC-008"}
+    ITEM_009: {x: 0.334986, y: 3.34, z: 2.31, shelf: "A", level: "1st", name: "Capacitor Pack", sku: "CAP-009"}
+    ITEM_010: {x: 2.61297, y: 3.32, z: 1.65, shelf: "A", level: "1st", name: "Resistor Kit", sku: "RES-010"}
+    ITEM_011: {x: -2.30257, y: 2.99, z: 2.36, shelf: "A", level: "1st", name: "Semiconductor Parts", sku: "SEM-011"}
+    ITEM_012: {x: -4.67439, y: 3.44, z: 2.36, shelf: "A", level: "1st", name: "LED Array", sku: "LED-012"}
+    ITEM_013: {x: -5.95548, y: 3.35, z: 2.36, shelf: "A", level: "1st", name: "Switch Assembly", sku: "SWA-013"}
+    ITEM_014: {x: -0.8, y: 3.34, z: 2.34, shelf: "A", level: "1st", name: "Cable Reel", sku: "CBL-014"}
+    
+    ITEM_015: {x: -2.18966, y: 3.35, z: 3.27, shelf: "A", level: "2nd", name: "Circuit Board", sku: "CIR-015"}
+    ITEM_016: {x: -4.68966, y: 3.35, z: 3.27, shelf: "A", level: "2nd", name: "PCB Assembly", sku: "PCB-016"}
+    ITEM_017: {x: -5.88966, y: 3.35, z: 3.27, shelf: "A", level: "2nd", name: "IC Chip Set", sku: "ICS-017"}
+    ITEM_018: {x: -3.25548, y: 3.35, z: 3.97, shelf: "A", level: "2nd", name: "Diode Module", sku: "DIO-018"}
+    ITEM_019: {x: 2.56918, y: 3.32, z: 3.97, shelf: "A", level: "2nd", name: "Transistor Pack", sku: "TRN-019"}
+    ITEM_020: {x: -0.8, y: 3.34, z: 3.97, shelf: "A", level: "2nd", name: "Optoelectronics", sku: "OPT-020"}
+    
+    ITEM_021: {x: 1.48626, y: -1.5, z: 0.76, shelf: "B", level: "ground", name: "Sensor Module A", sku: "SNS-021"}
+    ITEM_022: {x: 2.9, y: -1.5, z: 0.77, shelf: "B", level: "ground", name: "Actuator Unit", sku: "ACT-022"}
+    
+    ITEM_023: {x: 1.6, y: -1.5, z: 2.30, shelf: "B", level: "1st", name: "Motor Encoder", sku: "MTE-023"}
+    ITEM_024: {x: 2.9, y: -1.5, z: 2.30, shelf: "B", level: "1st", name: "Speed Controller", sku: "SPC-024"}
+    
+    ITEM_025: {x: 1.6, y: -1.5, z: 3.97, shelf: "B", level: "2nd", name: "Drive Electronics", sku: "DRV-025"}
+    ITEM_026: {x: 2.9, y: -1.5, z: 3.97, shelf: "B", level: "2nd", name: "Power Module", sku: "PWR-026"}
+
+ros_topics:
+  odometry: "/Odometry"
+  lidar_cloud: "/cloud_registered_body"
+  camera_image: "/main_camera/image_raw"
+  camera_info: "/main_camera/camera_info"
+  imu: "/mavros/imu/data"
+  
+ros_services:
+  navigate: "/navigate"
+  land: "/land"
+  
+logging:
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR
+  log_dir: "~/.ros/inventory_logs"
