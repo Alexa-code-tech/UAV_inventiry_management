@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<launch>
+    <!-- ====================================================
+         UAV Inventory Management System - Launch File
+         ===================================================== -->
+    
+    <!-- Arguments -->
+    <arg name="use_gazebo" default="true" doc="Launch Gazebo simulation"/>
+    <arg name="use_rviz" default="true" doc="Launch RViz visualization"/>
+    <arg name="log_level" default="info" doc="ROS log level"/>
+    
+    <!-- ===== GAZEBO ===== -->
+    <group if="$(arg use_gazebo)">
+        <include file="$(find clover)/launch/simulator.launch">
+            <arg name="world_name" value="warehouse2"/>
+        </include>
+    </group>
+    
+    <!-- ===== CLOVER NODES ===== -->
+    <include file="$(find clover)/launch/clover.launch"/>
+    
+    <!-- ===== OBSTACLE AVOIDANCE (VFH+) ===== -->
+    <node name="obstacle_avoidance" pkg="uav_inventory" type="obstacle_avoidance_vfh.py" 
+          output="screen" required="true">
+        <param name="log_level" value="$(arg log_level)"/>
+    </node>
+    
+    <!-- ===== QR SCANNER ===== -->
+    <node name="qr_scanner" pkg="uav_inventory" type="qr_scanner.py" 
+          output="screen" required="true">
+        <param name="log_level" value="$(arg log_level)"/>
+    </node>
+    
+    <!-- ===== INVENTORY DATABASE ===== -->
+    <node name="inventory_database" pkg="uav_inventory" type="inventory_database.py" 
+          output="screen" required="true">
+        <param name="log_level" value="$(arg log_level)"/>
+    </node>
+    
+    <!-- ===== NAVIGATION CONTROLLER (Main Mission) ===== -->
+    <node name="navigation_controller" pkg="uav_inventory" type="navigation_controller.py" 
+          output="screen" required="true" launch-prefix="bash -c 'sleep 5; $0 $@' ">
+        <param name="log_level" value="$(arg log_level)"/>
+    </node>
+    
+    <!-- ===== RVIZ VISUALIZATION ===== -->
+    <group if="$(arg use_rviz)">
+        <node name="rviz" pkg="rviz" type="rviz" 
+              args="-d $(find uav_inventory)/rviz/inventory_config.rviz" 
+              output="screen"/>
+    </group>
+    
+</launch>
