@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>uav_inventory</name>
+  <version>1.0.0</version>
+  <description>
+    UAV Inventory Management System
+    Autonomous warehouse inventory scanning using Clover 4 drone with FAST-LIO2 SLAM
+    and QR-code based item detection.
+  </description>
+  
+  <maintainer email="alya.fedora@list.ru">Alexa-code-tech</maintainer>
+  <license>MIT</license>
+  
+  <author>Alexa-code-tech</author>
+  
+  <!-- Dependencies -->
+  <buildtool_depend>catkin</buildtool_depend>
+  
+  <build_depend>roscpp</build_depend>
+  <build_depend>rospy</build_depend>
+  <build_depend>std_msgs</build_depend>
+  <build_depend>geometry_msgs</build_depend>
+  <build_depend>nav_msgs</build_depend>
+  <build_depend>sensor_msgs</build_depend>
+  <build_depend>cv_bridge</build_depend>
+  <build_depend>image_transport</build_depend>
+  
+  <exec_depend>roscpp</exec_depend>
+  <exec_depend>rospy</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+  <exec_depend>geometry_msgs</exec_depend>
+  <exec_depend>nav_msgs</exec_depend>
+  <exec_depend>sensor_msgs</exec_depend>
+  <exec_depend>cv_bridge</exec_depend>
+  <exec_depend>image_transport</exec_depend>
+  <exec_depend>clover</exec_depend>
+  <exec_depend>opencv</exec_depend>
+  <exec_depend>rviz</exec_depend>
+  
+  <!-- Python dependencies -->
+  <exec_depend>python-yaml</exec_depend>
+  <exec_depend>python-opencv</exec_depend>
+  <exec_depend>python-pyzbar</exec_depend>
+  
+</package>
